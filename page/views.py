@@ -1,7 +1,13 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from .models import Designer
 
 def home(request):
-    return render(request, 'home.html')
+    designers = Designer.objects.all()
+    return render(request, 'home.html', {'designers' : designers})
 
 def introduce(request):
     return render(request, 'introduce.html')
+
+def detail(request, designer_id):
+    designer = get_object_or_404(Designer, pk = designer_id) #값이 존재하면 담고 리턴 아니면 404에러
+    return render(request, 'detail.html', {'designer' : designer})
