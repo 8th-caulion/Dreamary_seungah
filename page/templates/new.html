@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+디자이너 등록하기
+{% endblock %}
+
+{% block link %}
+{% static 'css/new.css' %}
+{% endblock %}
+
+{% block content %}
+    <form action="{% url 'create' %}" method="POST" enctype="multipart/formdata">
+    {% csrf_token %}
+    <div class="mb3">
+        <label for="inputFile">대표 이미지 등록</label>
+        <input type="file" class="form-control-file" id="inputFile" name="image" value ="" required>
+    </div>
+    <div class="mb3">
+        <label for="inputName">이름 등록</label>
+        <input type="text" class="form-control" id="inputName" name="name" placeholder="50자 이내" required>
+    </div>
+    <div class="mb3">
+        <label for="inputName">지역 등록</label>
+        <input type="text" class="form-control" id="inputAddress" name="address" placeholder="서울시 동작구" required>
+    </div>
+    <div class="mb3">
+        <label for="inputName">소개 등록</label>
+        <input type="text" class="form-control" id="inputDescription" name="description" cols="40" row="100" placeholder="하고 싶은 말" required>
+    <!-- textarea로 설정하면 내부에 html코드가 나옵니다.. -->
+    </div>
+
+    <hr class="mb-4">
+    <button class="btn btn-secondary btn-lg btn-block" typr="submit">등록 완료하기</button>
+</form>
+{% endblock %}
